@@ -1,0 +1,26 @@
+From dde2aad84ef70b29ba58e958b558bd0358e47883 Mon Sep 17 00:00:00 2001
+From: Eberhard Beilharz <eb1@sil.org>
+Date: Wed, 21 Sep 2011 11:00:54 +0200
+Subject: [PATCH] Add class comment
+
+---
+ testproject/BankAccount.cs |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/testproject/BankAccount.cs b/testproject/BankAccount.cs
+index 7a07c4f..43e00bd 100644
+--- a/testproject/BankAccount.cs
++++ b/testproject/BankAccount.cs
+@@ -2,6 +2,9 @@ using System;
+ 
+ namespace UnitTestingExamples.Library
+ {
++	/// <summary>
++	/// Bank account.
++	/// </summary>
+ 	public class BankAccount
+ 	{
+ 		private double m_balance = 0.0;
+-- 
+1.7.4.1
+

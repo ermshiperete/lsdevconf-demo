@@ -1,0 +1,49 @@
+From e1df1a691f3708e4a3000522e396980ed47b285f Mon Sep 17 00:00:00 2001
+From: Eberhard Beilharz <eb1@sil.org>
+Date: Tue, 20 Sep 2011 16:02:13 +0200
+Subject: [PATCH] Implement Withdraw
+
+---
+ testproject/BankAccount.cs                       |    5 +++++
+ testproject/testprojectTests/BankAccountTests.cs |    9 +++++++++
+ 2 files changed, 14 insertions(+), 0 deletions(-)
+
+diff --git a/testproject/BankAccount.cs b/testproject/BankAccount.cs
+index 5b2ae68..b5aa3aa 100644
+--- a/testproject/BankAccount.cs
++++ b/testproject/BankAccount.cs
+@@ -15,5 +15,10 @@ namespace UnitTestingExamples.Library
+ 		{
+ 			get { return m_balance; }
+ 		}
++
++		public void Withdraw(double amount)
++		{
++			m_balance -= amount;
++		}
+ 	}
+ }
+\ No newline at end of file
+diff --git a/testproject/testprojectTests/BankAccountTests.cs b/testproject/testprojectTests/BankAccountTests.cs
+index 2785a00..2bf8ff0 100644
+--- a/testproject/testprojectTests/BankAccountTests.cs
++++ b/testproject/testprojectTests/BankAccountTests.cs
+@@ -15,5 +15,14 @@ namespace UnitTestingExamples.Tests
+ 			account.Deposit(25.0);
+ 			Assert.AreEqual(150.0, account.Balance);
+ 		}
++
++		[Test]
++		public void TestWithdraw()
++		{
++			BankAccount account = new BankAccount();
++			account.Deposit(125.0);
++			account.Withdraw(25.0);
++			Assert.AreEqual(100.0, account.Balance);
++		}
+ 	}
+ }
+\ No newline at end of file
+-- 
+1.7.4.1
+

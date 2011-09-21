@@ -1,0 +1,54 @@
+From 421fe800e0130ef9196cfb3a71c08fa7a24843ca Mon Sep 17 00:00:00 2001
+From: Eberhard Beilharz <eb1@sil.org>
+Date: Tue, 20 Sep 2011 16:00:10 +0200
+Subject: [PATCH] Implement TransferFunds
+
+---
+ testproject/BankAccount.cs                       |    6 ++++++
+ testproject/testprojectTests/BankAccountTests.cs |   13 +++++++++++++
+ 2 files changed, 19 insertions(+), 0 deletions(-)
+
+diff --git a/testproject/BankAccount.cs b/testproject/BankAccount.cs
+index 5b2ae68..a760db4 100644
+--- a/testproject/BankAccount.cs
++++ b/testproject/BankAccount.cs
+@@ -15,5 +15,11 @@ namespace UnitTestingExamples.Library
+ 		{
+ 			get { return m_balance; }
+ 		}
++
++		public void TransferFunds(BankAccount destination, double amount)
++		{
++			destination.Deposit(amount);
++			m_balance -= amount;
++		}
+ 	}
+ }
+\ No newline at end of file
+diff --git a/testproject/testprojectTests/BankAccountTests.cs b/testproject/testprojectTests/BankAccountTests.cs
+index 2785a00..530c143 100644
+--- a/testproject/testprojectTests/BankAccountTests.cs
++++ b/testproject/testprojectTests/BankAccountTests.cs
+@@ -15,5 +15,18 @@ namespace UnitTestingExamples.Tests
+ 			account.Deposit(25.0);
+ 			Assert.AreEqual(150.0, account.Balance);
+ 		}
++
++		[Test]
++		public void TransferFunds()
++		{
++			BankAccount source = new BankAccount();
++			source.Deposit(200.00);
++			BankAccount destination = new BankAccount();
++			destination.Deposit(150.00);
++
++			source.TransferFunds(destination, 100.00);
++			Assert.AreEqual(250.00, destination.Balance);
++			Assert.AreEqual(100.00, source.Balance);
++		}
+ 	}
+ }
+\ No newline at end of file
+-- 
+1.7.4.1
+

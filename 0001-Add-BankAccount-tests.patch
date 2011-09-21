@@ -1,0 +1,100 @@
+From 329c38475326eeac03d68cdebd2a4b8fea46ae28 Mon Sep 17 00:00:00 2001
+From: Eberhard Beilharz <eb1@sil.org>
+Date: Tue, 20 Sep 2011 13:25:34 +0200
+Subject: [PATCH 1/2] Add BankAccount + tests
+
+---
+ testproject/BankAccount.cs                         |   16 ++++++++++++++++
+ testproject/testproject.csproj                     |    1 +
+ testproject/testprojectTests/BankAccountTests.cs   |   19 +++++++++++++++++++
+ .../testprojectTests/testprojectTests.csproj       |    3 ++-
+ 4 files changed, 38 insertions(+), 1 deletions(-)
+ create mode 100644 testproject/BankAccount.cs
+ create mode 100644 testproject/testprojectTests/BankAccountTests.cs
+
+diff --git a/testproject/BankAccount.cs b/testproject/BankAccount.cs
+new file mode 100644
+index 0000000..60ed185
+--- /dev/null
++++ b/testproject/BankAccount.cs
+@@ -0,0 +1,16 @@
++using System;
++
++namespace UnitTestingExamples.Library
++{
++	public class BankAccount
++	{
++		public void Deposit(double amount)
++		{
++		}
++
++		public double Balance
++		{
++			get { return 0.0; }
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/testproject/testproject.csproj b/testproject/testproject.csproj
+index 51aaedd..2d7d1ec 100644
+--- a/testproject/testproject.csproj
++++ b/testproject/testproject.csproj
+@@ -37,6 +37,7 @@
+   <ItemGroup>
+     <Compile Include="Main.cs" />
+     <Compile Include="AssemblyInfo.cs" />
++    <Compile Include="BankAccount.cs" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+ </Project>
+\ No newline at end of file
+diff --git a/testproject/testprojectTests/BankAccountTests.cs b/testproject/testprojectTests/BankAccountTests.cs
+new file mode 100644
+index 0000000..2785a00
+--- /dev/null
++++ b/testproject/testprojectTests/BankAccountTests.cs
+@@ -0,0 +1,19 @@
++using System;
++using NUnit.Framework;
++using UnitTestingExamples.Library;
++
++namespace UnitTestingExamples.Tests
++{
++	[TestFixture]
++	public class BankAccountTests
++	{
++		[Test]
++		public void TestDeposit()
++		{
++			BankAccount account = new BankAccount();
++			account.Deposit(125.0);
++			account.Deposit(25.0);
++			Assert.AreEqual(150.0, account.Balance);
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/testproject/testprojectTests/testprojectTests.csproj b/testproject/testprojectTests/testprojectTests.csproj
+index 10f2196..b6a5aa6 100644
+--- a/testproject/testprojectTests/testprojectTests.csproj
++++ b/testproject/testprojectTests/testprojectTests.csproj
+@@ -35,13 +35,14 @@
+       <SpecificVersion>False</SpecificVersion>
+       <HintPath>..\..\nunit\nunit.framework.dll</HintPath>
+     </Reference>
+-    <Reference Include="testproject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
++    <Reference Include="testproject, Version=1.0.4280.23370, Culture=neutral, PublicKeyToken=null">
+       <SpecificVersion>False</SpecificVersion>
+       <HintPath>..\..\Output_\Debug\testproject.exe</HintPath>
+     </Reference>
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Include="Test.cs" />
++    <Compile Include="BankAccountTests.cs" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+ </Project>
+\ No newline at end of file
+-- 
+1.7.4.1
+

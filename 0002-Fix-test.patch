@@ -1,0 +1,35 @@
+From 481ca70a13014aeca5759d09c92fe6a6df2aac20 Mon Sep 17 00:00:00 2001
+From: Eberhard Beilharz <eb1@sil.org>
+Date: Tue, 20 Sep 2011 13:27:19 +0200
+Subject: [PATCH 2/2] Fix test
+
+---
+ testproject/BankAccount.cs |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+diff --git a/testproject/BankAccount.cs b/testproject/BankAccount.cs
+index 60ed185..5b2ae68 100644
+--- a/testproject/BankAccount.cs
++++ b/testproject/BankAccount.cs
+@@ -4,13 +4,16 @@ namespace UnitTestingExamples.Library
+ {
+ 	public class BankAccount
+ 	{
++		private double m_balance = 0.0;
++
+ 		public void Deposit(double amount)
+ 		{
++			m_balance += amount;
+ 		}
+ 
+ 		public double Balance
+ 		{
+-			get { return 0.0; }
++			get { return m_balance; }
+ 		}
+ 	}
+ }
+\ No newline at end of file
+-- 
+1.7.4.1
+
